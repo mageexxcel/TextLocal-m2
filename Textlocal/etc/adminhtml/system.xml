@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="excellence" translate="label" sortOrder="100">
+            <label>Excellence</label>
+        </tab>
+        <section id="textlocal" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Textlocal</label>
+            <tab>excellence</tab>
+            <resource>Excellence_Textlocal::textlocal_config</resource>
+            <group id="textlocal_settings" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Textlocal Settings</label>
+                <field id="hash_key" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>HASH KEY</label>
+                    <comment><![CDATA[Enter API Hash code, you can get from <a href='https://control.textlocal.in/docs/' target='_blank'>here</a> after logging in at textlocal.in]]></comment>
+                </field>
+                <field id="username" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>USERNAME</label>
+                    <comment><![CDATA[Enter the email address from which account created at TEXTLOCAL.]]></comment>
+                </field>
+                <field id="sender_name" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>SENDER NAME</label>
+                    <comment><![CDATA[Enter the name from which you want to send text.]]></comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

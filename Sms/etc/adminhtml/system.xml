@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="excellence" translate="label" sortOrder="100">
+            <label>Excellence</label>
+        </tab>
+        <section id="sms" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>SMS</label>
+            <tab>excellence</tab>
+            <resource>Excellence_Sms::sms_config</resource>
+            <group id="sms_settings" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>SMS Settings</label>
+                <field id="test_module" translate="button_label" type="button" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                  <label>Test Module</label>
+                  <frontend_model>Excellence\Sms\Block\Source\Check</frontend_model>
+                </field>
+                <field id="country_code" translate="label" type="select" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+                  <label>Countries Telephone Code</label>
+                  <source_model>Excellence\Sms\Model\Adminhtml\System\Config\Source\Countrycode</source_model>
+                  <comment>Select country code where you want to send messages.</comment>
+                </field>
+            </group>
+            <group id="advanced_setting" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Advance Settings</label>
+                <field id="login_control" translate="label" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Login/Registration Via Mobile Number (Yes/No)</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Set 'Yes' if you want user to be able to login via his mobile number, default: No</comment>
+                </field>
+                <field id="order_update_customer" translate="label" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Place/Update order notification to customer</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Set 'Yes' if you wish to send SMS confirmation to a customer.</comment>
+                </field>
+                <field id="order_update_admin" translate="label" type="select" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Place/Update order notification to admin</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Set 'Yes' if you wish to send SMS confirmation to a admin.</comment>
+                </field>
+                <field id="comment_notification_customer" translate="label" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Order Comments Notification to customer</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Set 'Yes' if you wish to send Comments notification for Customer.</comment>
+                </field>
+                <field id="module_status" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Module Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>You can Enable/Disable the module.</comment>
+                </field>
+            </group>
+            <group id="admin_sms_settings" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Admin SMS Settings</label>
+                <field id="admin_no" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                  <label>Telephone Numbers</label>
+                  <comment>Enter the multiple phone numbers in this field with Country "Code" by "separating"each number through comma(,)</comment>
+                </field>
+            </group>
+            <group id="sms_template_settings" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>SMS Template Settings</label>
+                <field id="login_sms" translate="label" type="textarea" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                  <label>Customer Login Template</label>
+                  <comment><![CDATA[Edit this template to change the customer login template. <a href='https://support.twilio.com/hc/en-us' target='_blank'>Click here to know SMS charges & Max character limit per SMS.</a>]]></comment>
+
+                </field>
+                <field id="registration_sms" translate="label" type="textarea" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+                  <label>Customer Registration Template</label>
+                  <comment><![CDATA[Edit this template to change the customer registration  template. <a href='https://support.twilio.com/hc/en-us' target='_blank'>Click here to know SMS charges & Max character limit per SMS.</a>]]></comment>
+
+                </field>
+                <field id="order_verification_sms" translate="label" type="textarea" sortOrder="3" showInDefault="1" showInWebsite="0" showInStore="0">
+                  <label>Order Verification SMS Template</label>
+                  <comment><![CDATA[Edit this template to change the order verification template. <a href='https://support.twilio.com/hc/en-us' target='_blank'>Click here to know SMS charges & Max character limit per SMS.</a>]]></comment>
+
+                </field>
+                <field id="order_confirmation_sms" translate="label" type="textarea" sortOrder="4" showInDefault="1" showInWebsite="0" showInStore="0">
+                  <label>Order Confirmation Template Customer</label>
+                  <comment><![CDATA[Edit this template to change order confirmation SMS. <a href='https://support.twilio.com/hc/en-us' target='_blank'>Click here to know SMS charges & Max character limit per SMS.</a>]]></comment>
+                </field>
+                <field id="order_update_notification" translate="label" type="textarea" sortOrder="5" showInDefault="1" showInWebsite="0" showInStore="0">
+                  <label>Order Status Update Template Customer</label>
+                  <comment><![CDATA[Edit this template to change order update SMS for customer. <a href='https://support.twilio.com/hc/en-us' target='_blank'>Click here to know SMS charges & Max character limit per SMS.</a>]]></comment>
+
+                </field>
+                <field id="order_onhold_notification" translate="label" type="textarea" sortOrder="6" showInDefault="1" showInWebsite="0" showInStore="0">
+                  <label>Order Status On-hold Template Customer</label>
+                  <comment><![CDATA[Edit this template to change order On-hold SMS for customer. <a href='https://support.twilio.com/hc/en-us' target='_blank'>Click here to know SMS charges & Max character limit per SMS.</a>]]></comment>
+
+                </field><field id="order_invoiced_notification" translate="label" type="textarea" sortOrder="7" showInDefault="1" showInWebsite="0" showInStore="0">
+                  <label>Order Status Invoiced Template Customer</label>
+                  <comment><![CDATA[Edit this template to change order Invoiced SMS for customer. <a href='https://support.twilio.com/hc/en-us' target='_blank'>Click here to know SMS charges & Max character limit per SMS.</a>]]></comment>
+
+                </field><field id="order_shipped_notification" translate="label" type="textarea" sortOrder="8" showInDefault="1" showInWebsite="0" showInStore="0">
+                  <label>Order Status Shipped Template Customer</label>
+                  <comment><![CDATA[Edit this template to change order Shipped SMS for customer. <a href='https://support.twilio.com/hc/en-us' target='_blank'>Click here to know SMS charges & Max character limit per SMS.</a>]]></comment>
+
+                </field><field id="order_refunded_notification" translate="label" type="textarea" sortOrder="9" showInDefault="1" showInWebsite="0" showInStore="0">
+                  <label>Order Status Refunded Template Customer</label>
+                  <comment><![CDATA[Edit this template to change order Refunded SMS for customer. <a href='https://support.twilio.com/hc/en-us' target='_blank'>Click here to know SMS charges & Max character limit per SMS.</a>]]></comment>
+
+                </field>
+                <field id="order_comments_customer" translate="label" type="textarea" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                  <label>Order Comments Template Customer</label>
+                  <comment><![CDATA[Edit this template to change order update SMS for customer. <a href='https://support.twilio.com/hc/en-us' target='_blank'>Click here to know SMS charges & Max character limit per SMS.</a>]]></comment>
+
+                </field>
+                <field id="order_confirmation_admin" translate="label" type="textarea" sortOrder="11" showInDefault="1" showInWebsite="0" showInStore="0">
+                  <label>Order Confirmation Template Admin</label>
+                  <comment><![CDATA[Edit this template to change order confirmation SMS for admin. <a href='https://support.twilio.com/hc/en-us' target='_blank'>Click here to know SMS charges & Max character limit per SMS.</a>]]></comment>
+                </field>
+                <field id="order_update_admin" translate="label" type="textarea" sortOrder="8" showInDefault="1" showInWebsite="0" showInStore="0">
+                  <label>Order Status Update Template Admin</label>
+                  <comment><![CDATA[Edit this template to change order status update SMS for admin. <a href='https://support.twilio.com/hc/en-us' target='_blank'>Click here to know SMS charges & Max character limit per SMS.</a>]]></comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

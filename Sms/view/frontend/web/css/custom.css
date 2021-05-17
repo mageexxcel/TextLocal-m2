@@ -1,0 +1,38 @@
+@media(min-width: 768px){
+	body.excellence-sms-index-loginotp .control.mobile-field{
+		width:48%;
+		margin-bottom: 1%;
+	}
+	body.excellence-sms-index-loginotp .control.otp-field{
+		width:48%;
+		margin-bottom: 1%;
+	}
+	body.customer-account-login .login-container .block.block-new-customer{
+		float:right;
+	}
+	body.checkout-index-index #div-sms-verify-con{
+		text-align:center;
+	}
+	body.checkout-index-index .proceedtocheckout{
+		margin-left: 30.5%;
+  		width: 100%;
+	}
+	body.checkout-index-index #pro-to-check{
+		width: 30%;
+ 		margin-top: 1%;
+	}
+	body.checkout-index-index #sendotp{
+		width: 30%;
+    	margin-top: 1%;
+	}
+	body.checkout-index-index #checkout-step-new{
+		text-align: center;
+	}
+	body.checkout-index-index #sms-verify{
+		width: 30%;
+  		margin-top: 1%;
+	}
+}
+#sms_sms_settings_test_module_test{
+	vertical-align: -webkit-baseline-middle;
+}

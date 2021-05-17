@@ -1,0 +1,22 @@
+<script>
+   	requirejs(['jquery','Excellence_Sms/verify'],function(jQuery,sms){
+    jQuery('document').ready(
+
+                function(){
+                	
+                	jQuery('input:radio').live('click',function(){
+                		jQuery(".actions-toolbar").hide();
+ 
+                	});
+                     
+                }
+            );
+});
+</script>
+<div id="excellence_sms_verify_container">
+	<input type="text" name="phone" class="input-text" id="excellence_sms_verify" placeholder="Enter number" width="30px">
+	<button value="Apply Discount" class="action action-apply" type="submit">
+                            <span>Verify</span>
+                        </button>
+</div>
+

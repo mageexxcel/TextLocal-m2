@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance dc" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<head>
+        <link src="Excellence_Sms::js/sms.js"/>
+        <link src="Excellence_Sms::js/passwordscheck.js"/>
+        <link src="Excellence_Sms::css/passwordscheck.css"/>
+    </head>  
+    <referenceContainer name="content">
+        <referenceBlock name="customer_form_register">
+            <action method="setTemplate" ifconfig="sms/advanced_setting/login_control">
+                <argument name="template" xsi:type="string">Excellence_Sms::register.phtml</argument>
+            </action>
+        </referenceBlock>
+    </referenceContainer>
+</page>
