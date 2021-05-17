@@ -1,0 +1,220 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var \Magento\Customer\Block\Form\Login $block */
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$defaultBlock = $objectManager->get('\Excellence\Sms\Block\Otp');
+$scopConfig = $objectManager->get('\Magento\Framework\App\Config\ScopeConfigInterface');
+$moduleStatus = $scopConfig->getValue('sms/advanced_setting/module_status',\Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+$otp_block = $objectManager->get('Excellence\Sms\Block\Otp');
+?>
+<?php
+/**
+ * Customer login form template
+ *
+ * @see \Magento\Customer\Block\Form\Login
+ * @var $block \Magento\Customer\Block\Form\Login
+ */
+?>
+<div class="block block-customer-login">
+    <div class="block-title">
+        <strong id="block-customer-login-heading" role="heading" aria-level="2"><?php /* @escapeNotVerified */ echo __('Registered Customers') ?></strong>
+    </div>
+  <?php if($moduleStatus){ ?>
+    <div class="block-content" aria-labelledby="block-customer-login-heading">
+        <form class="form form-login otp-form-login"
+              action="<?php /* @escapeNotVerified */ echo $block->getPostActionUrl() ?>"
+              method="post"
+              id="login-form"
+              data-mage-init='{"validation":{}}'>
+            <?php echo $block->getBlockHtml('formkey'); ?>
+            <fieldset class="fieldset login" data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>">
+                <div class="field note"><?php /* @escapeNotVerified */ echo __('If you have an account, sign in with your email address or verified mobile number.') ?></div>
+                <div class="field note2" style="display:none;"><?php /* @escapeNotVerified */ echo __('Please Enter 4-digit OTP Number.') ?></div>
+                <div class="field email required">
+                    <label class="label" for="email"><span><?php /* @escapeNotVerified */ echo __('Email/Mobile No') ?></span></label>
+                    <div class="control">
+                        <input name="login[username]" value="<?php echo $block->escapeHtml($block->getUsername()) ?>" <?php if ($block->isAutocompleteDisabled()) :?> autocomplete="off"<?php endif; ?> id="email" type="text" class="input-text " title="<?php /* @escapeNotVerified */ echo __('Email/Mobile No') ?>" data-validate="{required:true}">
+                    </div>
+                </div>
+                <div class="field password required">
+                    <label for="pass" id="email-label" class="label"><span><?php /* @escapeNotVerified */ echo __('Password') ?></span></label>
+                    <label for="otp-pass" id="otp-label" class="label" style="display:none;"><span><?php /* @escapeNotVerified */ echo __('Enter OTP') ?></span></label>
+                    <div class="control">
+                        <input name="login[password]" type="password" <?php if ($block->isAutocompleteDisabled()) :?> autocomplete="off"<?php endif; ?> class="input-text" id="pass" title="<?php /* @escapeNotVerified */ echo __('Password') ?>" data-validate="{required:true}">
+                        <input name="login[otp]" style="display:none;" type="password" <?php if ($block->isAutocompleteDisabled()) :?> autocomplete="off"<?php endif; ?> class="input-text" id="otp" title="<?php /* @escapeNotVerified */ echo __('OTP') ?>" data-validate="{required:true}">
+                    </div>
+                </div>
+                <?php echo $block->getChildHtml('form_additional_info'); ?>
+                <div class="actions-toolbar">
+                    <div class="primary"><button type="submit" class="action login primary" name="send" id="send2"><span><?php /* @escapeNotVerified */ echo __('Sign In') ?></span></button></div>
+                    <div class="primary"><button type="submit" class="action login primary" style="display:none;" name="otplogin" id="otplogin"><span><?php /* @escapeNotVerified */ echo __('Login via OTP') ?></span></button>
+                    </div>
+                    <div class="primary" id="reset"><button type="submit" class="action login primary" style="display:none;" name="otp-reset" id="otp-reset"><span><?php /* @escapeNotVerified */ echo __('Reset') ?></span></button>
+                    </div>
+                    <div class="secondary"><a class="action remind" href="<?php /* @escapeNotVerified */ echo $block->getForgotPasswordUrl() ?>"><span><?php /* @escapeNotVerified */ echo __('Forgot Your Password?') ?></span></a></div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+<?php } else{ ?>
+  <div class="block block-customer-login">
+    <div class="block-title">
+        <strong id="block-customer-login-heading" role="heading" aria-level="2"><?php /* @escapeNotVerified */ echo __('Registered Customers') ?></strong>
+    </div>
+    <div class="block-content" aria-labelledby="block-customer-login-heading">
+        <form class="form form-login"
+              action="<?php /* @escapeNotVerified */ echo $block->getPostActionUrl() ?>"
+              method="post"
+              id="login-form"
+              data-mage-init='{"validation":{}}'>
+            <?php echo $block->getBlockHtml('formkey'); ?>
+            <fieldset class="fieldset login" data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>">
+                <div class="field note"><?php /* @escapeNotVerified */ echo __('If you have an account, sign in with your email address.') ?></div>
+                <div class="field email required">
+                    <label class="label" for="email"><span><?php /* @escapeNotVerified */ echo __('Email') ?></span></label>
+                    <div class="control">
+                        <input name="login[username]" value="<?php echo $block->escapeHtml($block->getUsername()) ?>" <?php if ($block->isAutocompleteDisabled()) :?> autocomplete="off"<?php endif; ?> id="email" type="text" class="input-text validate-email" title="<?php /* @escapeNotVerified */ echo __('Email') ?>" data-validate="{required:true}">
+                    </div>
+                </div>
+                <div class="field password required">
+                    <label for="pass" class="label"><span><?php /* @escapeNotVerified */ echo __('Password') ?></span></label>
+                    <div class="control">
+                        <input name="login[password]" type="password" <?php if ($block->isAutocompleteDisabled()) :?> autocomplete="off"<?php endif; ?> class="input-text" id="pass" title="<?php /* @escapeNotVerified */ echo __('Password') ?>" data-validate="{required:true, 'validate-password':true}">
+                    </div>
+                </div>
+                <?php echo $block->getChildHtml('form_additional_info'); ?>
+                <div class="actions-toolbar">
+                    <div class="primary"><button type="submit" class="action login primary" name="send" id="send2"><span><?php /* @escapeNotVerified */ echo __('Login') ?></span></button></div>
+                    <div class="secondary"><a class="action remind" href="<?php /* @escapeNotVerified */ echo $block->getForgotPasswordUrl() ?>"><span><?php /* @escapeNotVerified */ echo __('Forgot Your Password?') ?></span></a></div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+  </div>
+<?php } ?>
+<script>
+require([
+  'jquery',
+  'Magento_Ui/js/modal/alert'
+  ],function($,alert){
+  var status = "<?php echo $moduleStatus ?>";
+  if(status)
+  {
+    $("#email").removeAttr("disabled");
+    $('#send2').show();
+    $('.secondary').show();
+    $('#email-label').show();
+    $('#pass').show();
+    $('.field.note').show();
+    $('.secondary').show();
+    
+    var delay = (function(){
+    var timer = 0;
+      return function(callback, ms){
+        clearTimeout (timer);
+        timer = setTimeout(callback, ms);
+      };
+    })();
+    $(document).on('blur focusout','#email',function(e){
+        var validate = false;
+        var phoneNumber = $('#email').val();
+        var filter = /^((\+[1-9]{1,4}[ \-]*)|(\([0-9]{2,3}\)[ \-]*)|([0-9]{2,4})[ \-]*)*?[0-9]{3,4}?[ \-]*[0-9]{3,4}?$/;
+        if (filter.test(phoneNumber)){
+          if(phoneNumber.length==10){
+            var validate = true;
+          }
+          else
+          {
+            alert({
+              title: 'Alert',
+              content: 'Please enter 10 digit mobile number!',
+              actions: {
+                  always: function(){}
+              }
+            });
+            var validate = false;
+          }
+        }
+        else
+        {
+          var validate = false;
+        }
+        
+        delay(function(){
+            if(validate){
+              $("#email").attr("disabled", "disabled"); 
+              var URL = "<?php echo $otp_block->getProcessUrl(); ?>";
+              $.ajax({
+                type: "POST",
+                showLoader: true,
+                url: URL,
+                dataType: 'json',
+                data:{
+                    mobile:$('#email').val()
+                },
+                success:function(result){
+                  $('#send2').hide();
+                  $('#pass').hide();
+                  $('.secondary').hide();
+                  $('#email-label').hide();
+                  $('.field.note').hide();
+                  $('#otp-reset').css('display','block');
+                  $('#otplogin').css('display','block');
+                  $('#otp-label').css('display','block');
+                  $('#otp').css('display','block');
+                  $('.field.note2').css('display','block');
+                  $("#email").attr("disabled", "disabled");
+                  if(!(result == 'undefined' || result == null || result.length == 0))
+                  {
+                    window.location = result['url'];
+                  }
+                }
+              });
+            }
+        }, 500);
+    });
+    $('#otplogin').click(function(){
+      $(".otp-form-login").submit(function(e){
+          e.preventDefault();
+      });
+      var URI = "<?php echo $otp_block->getOtpVerifyUrl() ?>";
+      $.ajax({
+        type: "POST",
+        showLoader: true,
+        url: URI,
+        dataType: 'json',
+        data:{
+            otp : $('#otp').val()
+        },
+        success:function(data){
+          if(!(data == 'undefined' || data == null || data.length == 0)){
+            window.location.href = data['url'];
+          }
+          else
+          {
+            return false;
+          }  
+        }
+      });
+    });
+    $('#otp-reset').on('click', function(){
+      $(".otp-form-login").submit(function(e){
+        e.preventDefault();
+      });
+        location.reload();
+    });
+  }
+  function isEmail(email) {
+    var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    return regex.test(email);
+  }
+  
+});
+</script>

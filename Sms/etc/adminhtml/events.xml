@@ -1,0 +1,6 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="sales_order_status_after">
+        <observer name="excellence_customer_notify" instance="Excellence\Sms\Observer\CustomerNotify" />
+       
+    </event>
+</config>

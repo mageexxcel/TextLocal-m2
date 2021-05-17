@@ -1,0 +1,85 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+$config = $objectManager->get('\Magento\Framework\App\Config\ScopeConfigInterface');
+$helper = $objectManager->get('Excellence\Sms\Helper\Data');
+$session = $objectManager->get('Magento\Customer\Model\Session');
+$status = $config->getValue('sms/advanced_setting/module_status',\Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+$url = $storeManager->getStore()->getBaseUrl();
+$this->_resources = \Magento\Framework\App\ObjectManager::getInstance()
+        ->get('Magento\Framework\App\ResourceConnection');
+$isVerified = false;
+if($session->isLoggedIn()){
+	$mobile = $helper->getCustomerPhone($session->getId());
+	if($mobile != null){  
+		$isVerified = true;
+	}
+}
+
+?>
+<script>
+
+require(['jquery'],function($){
+	var button = '#shipping-method-buttons-container .continue.primary'
+	var number = "<?php if(isset($mobile)){echo $mobile;} ?>";
+	var isVerified = "<?php echo $isVerified; ?>";
+	var flag = false;
+	var altNumber = '';
+	var src = "<?php echo $this->getViewFileUrl('Excellence_Sms::images/tick.png'); ?>";
+	$(document).on('keyup',"input[name='telephone']",function(){
+
+		altNumber = $(this).val();
+	});
+	$(document).on('click',button,function(){
+		altNumber = $("input[name='telephone']").val();
+		
+		if((number !=null || number != 'undefined') && isVerified)
+		{
+			if(altNumber != number && altNumber != ''){
+				$('#email-otp').attr('value',altNumber);
+			}
+			else{
+				$('#email-otp').attr('value',number);
+			}
+			$('.input-group-addon').show();
+			$('#sendotp').hide();
+			$('#email-otp').css('border','2px solid #698b69');
+			$('#pro-to-check').css('display','block');
+			flag = true;
+		}
+		else
+		{
+			$('#sendotp').show();
+			$('#pro-to-check').css('display','none');
+			$('#email-otp').css('border','2px solid #000');
+			$('#email-otp').attr('value',altNumber);
+			$('.input-group-addon').hide();
+		}
+ 	    $('#tick').attr('src',src);
+	});
+	$(document).on("change","#email-otp",function(){
+		if(flag){
+			if ($(this).val().length > 0 && number == $(this).val()){
+            	$('.input-group-addon').show();
+            	$('#email-otp').css('border','2px solid #698b69');
+            	$('#sendotp').hide();
+				$('#pro-to-check').css('display','block');
+
+        	}
+        	else{
+        		$('#email-otp').css('border','2px solid #ff0000');
+        		$('#sendotp').show();
+				$('#pro-to-check').css('display','none');
+            	$('.input-group-addon').hide();
+        	}
+		}
+    });	
+});
+
+window.customerPhoneno = <?php  echo \Zend_Json::encode($block->getBilling()) ?>;
+window.enable = <?php echo $status ?>;
+window.sendsmsUrl= "<?php echo $storeManager->getStore()->getBaseUrl().'excellence_sms/index/Sendsms'; ?>";
+window.verifyUrl= "<?php echo $storeManager->getStore()->getBaseUrl().'excellence_sms/index/VerifyCode'; ?>";
+window.uid = "<?php echo  __(uniqid()); ?>";
+       
+</script>

@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Excellence_Textlocal::Textlocal_title" title="Textlocal" module="Excellence_Textlocal" sortOrder="20"  resource="Excellence_Base::base" parent="Excellence_Sms::sms"/>
+        <add id="Excellence_Textlocal::textlocal_manage" title="Textlocal configuration" module="Excellence_Textlocal" sortOrder="10" parent="Excellence_Textlocal::Textlocal_title" action="adminhtml/system_config/edit/section/textlocal" resource="Excellence_Textlocal::textlocal_config"/>
+    </menu>
+</config>

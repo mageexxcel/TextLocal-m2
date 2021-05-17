@@ -1,0 +1,96 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$defaultBlock = $objectManager->get('Magento\Customer\Block\Form\Login');
+$messageManager = $objectManager->get('\Magento\Framework\Message\ManagerInterface');
+?>
+
+<div class="block block-customer-login">
+    <div class="block-title">
+        <strong id="block-customer-login-heading" role="heading" aria-level="2"><?php /* @escapeNotVerified */ echo __('Registered Customers') ?></strong>
+    </div>
+    <div class="block-content" aria-labelledby="block-customer-login-heading">
+        <form class="form form-login"
+              action="<?php /* @escapeNotVerified */ //echo $block->getOtpVerifyUrl(); ?>"
+              method="post"
+              id="loginotp-form"
+              data-mage-init='{"validation":{}}'>
+            <fieldset class="fieldset login" data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>">
+            	<div class="field note"><?php /* @escapeNotVerified */ echo __('If you have an account, sign in with your Mobile Number. We will send you OTP.') ?></div>
+                <div class="field note-otp"><?php /* @escapeNotVerified */ echo __('Please Enter the 4 digit OTP to login into your account.') ?></div>
+            	<div class="control mobile-field">
+            		<label class="mobile-otp">Please Enter Mobile No*</label>
+                    <input name="login[username]" value="<?php echo $block->escapeHtml($block->getUsername()) ?>" <?php if ($defaultBlock->isAutocompleteDisabled()) :?> autocomplete="off"<?php endif; ?> id="mobile" type="text" class="input-text" title="<?php /* @escapeNotVerified */ echo __('Mobile') ?>" data-validate="{required:true}">
+                </div>
+                <div class="control otp-field">
+                	<label class="otp-mobile">Please Enter OTP*</label>
+                    <input name="login[password]" value="<?php echo $block->escapeHtml($block->getUsername()) ?>" <?php if ($defaultBlock->isAutocompleteDisabled()) :?> autocomplete="off"<?php endif; ?> id="otp" type="password" class="input-text" title="<?php /* @escapeNotVerified */ echo __('OTP') ?>" data-validate="{required:true}">
+                </div>
+                <div class="actions-toolbar">
+                    <div class="primary"><button type="button" class="action login primary" name="send" id="loginotp"><span><?php /* @escapeNotVerified */ echo __('Generate OTP') ?></span></button></div>
+                    <div class="primary"><button type="button" class="action login primary" name="send" id="signinotp"><span><?php /* @escapeNotVerified */ echo __('Sign In') ?></span></button></div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+<script>
+require(['jquery'],function($){
+	$('.otp-mobile').hide();
+	$('#otp').hide();
+	$('#signinotp').hide();
+    $('.field.note-otp').hide();
+    $('#mobile').val('');
+    $('#otp').val('');
+	$('#loginotp').click(function(){
+        if($('#mobile').val() !=''){
+			var URL = "<?php echo $block->getProcessUrl(); ?>";
+			var mobileno = $('#mobile').val();
+			$.ajax({
+				type: "POST",
+				showLoader: true,
+				url: URL,
+                dataType: 'json',
+				data:{
+                    mobile:$('#mobile').val()
+                } ,
+				success:function(result){ 
+                    $('.field.note-otp').show();
+                    $('.otp-mobile').show();
+                    $('#otp').show();
+                    $('#signinotp').show();
+                    $('.mobile-otp').hide();
+                    $('#mobile').hide();
+                    $('.field.note').hide();
+                    $('#loginotp').hide();
+
+				}
+			});
+        }
+        else
+        {
+            alert('Please Enter Mobile No First!');
+        }
+	});
+    $('#signinotp').click(function(){
+        if($('#mobile').val() !=''){
+            var URI = "<?php echo $block->getOtpVerifyUrl() ?>";
+            $.ajax({
+                type: "POST",
+                showLoader: true,
+                url: URI,
+                dataType: 'json',
+                data:{
+                    otp : $('#otp').val()
+                },
+                success:function(data){
+                    var urlArr = data['url']; 
+                    window.location.href = urlArr;
+                }
+            });
+        }
+        else
+        {
+            alert('This field cannot be leave blank.');
+        }
+    });
+});
+</script>

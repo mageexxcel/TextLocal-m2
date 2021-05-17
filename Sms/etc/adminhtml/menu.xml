@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+    	<add id="Excellence_Sms::sms" title="Excellence" module="Excellence_Sms" sortOrder="15" dependsOnModule="Excellence_Sms" resource="Excellence_Sms::sms"/>
+        <add id="Excellence_Sms::Sms_title" title="SMS" module="Excellence_Sms" sortOrder="10"  resource="Excellence_Sms::sms_config" parent="Excellence_Sms::sms"/>
+        <add id="Excellence_Sms::sms_manage" title="SMS configuration" module="Excellence_Sms" sortOrder="10" parent="Excellence_Sms::Sms_title" action="adminhtml/system_config/edit/section/sms" resource="Excellence_Sms::sms_config"/>
+    </menu>
+</config>

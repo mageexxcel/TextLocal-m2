@@ -1,0 +1,235 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <sms translate="label" module="sms">
+            <label>Excellence</label>
+            <sort_order>1</sort_order>
+        </sms>
+    </tabs>
+
+    <sections>
+        <smssection translate="label" module="sms">
+            <class>separator-top</class>
+            <label>Excellence Sms</label>
+            <tab>excellence</tab>
+            <sort_order>130</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups><!--create group dase-->
+                <settings translate="label">
+                    <label>Sms Settings</label>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+			<test_button translate="label">
+                            <label>Test Module</label>
+                            <frontend_type>button</frontend_type>
+                            <frontend_model>sms/test</frontend_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </test_button>
+                        <country_codes translate="label">
+                            <label>Countries Telephone Codes</label>
+                            <frontend_type>select</frontend_type>
+                            <comment>Select Country Code from the dropdown</comment>
+                            <source_model>sms/adminhtml_system_config_source_countrycode</source_model>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </country_codes>
+                    </fields>
+                </settings>
+                <advancesetting>
+                    <label>Advance Settings</label>
+                    <sort_order>11</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        
+                        <telephone_login translate="label">
+                            <label>Enabled Login/Registration Via Mobile No (yes/no)</label>
+                            <frontend_type>select</frontend_type>
+                            <comment>If you want user to be able to login via his mobile number, default: no</comment>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>	
+                            <show_in_store>1</show_in_store>
+                        </telephone_login>
+
+                        <paymentmethods translate="label">
+                            <label>Credit Card Types</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_payment_allmethods</source_model>
+                            <comment>Select payment methods for which you need sms verification.</comment>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <can_be_empty>1</can_be_empty>
+                        </paymentmethods>
+                        <customernotification translate="label">
+                            <label>Enable Order Update Notification To Customer</label>
+                            <frontend_type>select</frontend_type>
+                            <comment>Set 'yes' if you wish to send sms confirmation to a customer.</comment>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>	
+                            <show_in_store>1</show_in_store>
+                        </customernotification>
+                        <adminnotification translate="label">
+                            <label>Enable Order Update Notification To admin</label>
+                            <frontend_type>select</frontend_type>
+                            <comment>Set 'yes' if you wish to send sms confirmation to a admin.</comment>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>	
+                            <show_in_store>1</show_in_store>
+                        </adminnotification>
+                        <ordercomments translate="label">
+                            <label>Enable Order Comments Notification To Customer</label>
+                            <frontend_type>select</frontend_type>
+                            <comment>Set 'yes' if you wish to send Comments notification for Customer.</comment>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>	
+                            <show_in_store>1</show_in_store>
+                        </ordercomments>
+                        <orderverification translate="label">
+                            <label>Module Enable/Disable</label>
+                            <frontend_type>select</frontend_type>
+                            <comment>You can Enable/Disable the module.</comment>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>	
+                            <show_in_store>1</show_in_store>
+                        </orderverification>
+                    </fields>
+                </advancesetting>
+                
+                <smstemplate>
+                    <label>SMS Template Settings</label>
+                    <sort_order>12</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        
+                        <order_verification_sms translate="label">
+                            <label>Order Verification SMS Template</label>
+                            <frontend_type>textarea</frontend_type>
+                            <comment>edit this template to change the order verification template</comment>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>	
+                            <show_in_store>1</show_in_store>
+                        </order_verification_sms>
+                        <order_confirmation_sms translate="label">
+                            <label>Order Confirmation Template Customer</label>
+                            <frontend_type>textarea</frontend_type>
+                            <comment> edit this template to change order confirmation sms</comment>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>	
+                            <show_in_store>1</show_in_store>
+                        </order_confirmation_sms>
+                        
+                         <order_update_notification translate="label">
+                            <label>Order Update Notification Template</label>
+                            <frontend_type>textarea</frontend_type>
+                            <comment>edit this template to change order update sms for customer</comment>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>	
+                            <show_in_store>1</show_in_store>
+                        </order_update_notification>
+                        
+                         <order_comments_template_customer translate="label">
+                            <label>Order Comments Template Customer</label>
+                            <frontend_type>textarea</frontend_type>
+                            <comment>edit this template to change order update sms for customer.</comment>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>	
+                            <show_in_store>1</show_in_store>
+                        </order_comments_template_customer>
+                        
+                                               
+                         <order_confirmation_template_admin translate="label">
+                            <label>Order Confirmation Template Admin</label>
+                            <frontend_type>textarea</frontend_type>
+                            <comment>edit this template to change order confirmation sms for admin.</comment>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>	
+                            <show_in_store>1</show_in_store>
+                        </order_confirmation_template_admin>
+                         <order_status_update_template_admin translate="label">
+                            <label>Order Status Update Template Admin</label>
+                            <frontend_type>textarea</frontend_type>
+                            <comment>edit this template to change order status update sms for admin.</comment>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>	
+                            <show_in_store>1</show_in_store>
+                        </order_status_update_template_admin>
+                        
+                    </fields>
+                </smstemplate>
+                
+                <adminsms>
+                    <label>Admin SMS Settings</label>
+                    <sort_order>12</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <telephonenumber translate="label">
+                            <label>Telephone Numbers</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>	
+                            <show_in_store>1</show_in_store>
+                            <comment>Enter the multiple phone numbers in this field with Country code by seperating each number through comma(,)</comment>
+                        </telephonenumber>
+                    </fields>
+                </adminsms>
+
+                <log_settings>
+                    <label>Log Settings</label>
+                    <sort_order>13</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <log>
+                            <label>Enable log</label>
+                            <frontend_type>select</frontend_type>
+                            <comment>Logging from Mage::log(). File is located in {{base_dir}}/var/log/sms</comment>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>	
+                            <show_in_store>1</show_in_store>
+                        </log>
+                    </fields>
+                </log_settings>
+
+            </groups>
+        </smssection>
+    </sections>
+	
+</config>
+

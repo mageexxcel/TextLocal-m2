@@ -1,0 +1,37 @@
+<li id="verification" data-bind="fadeVisible: isVisible" >
+<div class="step-title" data-bind="i18n: 'Please verify your mobile number for payment' " data-role="title" ></div>
+<br>
+<br>
+    <div id="div-sms-verify-con">
+       <form  data-bind="submit: getotpformnumber">
+            <div class="input-group"> 
+            <input type="text" class="form-control" id="email-otp" style="width:30%;" placeholder="Enter number">
+            <span class="input-group-addon"><img id="tick" src=""/>Verified</span>
+            <input type="hidden" id="uid"  data-bind="value: uid" >
+            </div>
+            <button type="submit" class="btn btn-primary action submit primary" id="sendotp">   
+                <span><!-- ko i18n: 'Get OTP'--><!-- /ko --></span> 
+            </button>
+        </form>
+        <form data-bind="submit: proceedToNext" class="proceedtocheckout">
+            <button data-role="opc-continue" type="submit" id="pro-to-check" class="btn btn-primary action primary checkout" style="display:none;">   
+                <span><!-- ko i18n: 'Proceed to checkout'--><!-- /ko --></span> 
+            </button>
+        </form>
+    </div>
+    <br>
+    <div id="checkout-step-new"
+         class="step-content"
+         data-role="content" style="display:none;">
+        <form data-bind="submit: navigateToNextStep" novalidate="novalidate" class="verify" role="form">
+            <div class="input-group">
+                <input type="text" class="form-control input-text" id="sms-otp" style="width:30%;" placeholder="Enter OTP" data-bind="value: code">
+                <input type="hidden" id="uid"  data-bind="value: uid" >
+            </div>
+            <button data-role="opc-continue" type="submit" id="sms-verify" class="btn btn-primary action primary sms-verify">   
+                    <span><!-- ko i18n: 'Verify'--><!-- /ko --></span> 
+            </button>
+        </form>
+    </div>
+</li>
+

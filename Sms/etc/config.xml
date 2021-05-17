@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <sms>
+            <sms_template_settings>
+                <order_verification_sms>
+                Please Enter {{var code}} as your OTP/Verification code for your order with {{var store_name}}
+                </order_verification_sms>
+                <order_confirmation_sms>
+                Your order no #{{var order_no}} was successfully placed at {{var time}} with {{var store_name}} 
+                </order_confirmation_sms>
+                <order_update_notification>
+                Order #{{var order_no}} status updated to {{var order_status}}
+                </order_update_notification>
+                <order_comments_customer>
+                Order Update for #{{var order_id}} from {{var store_name}} "{{var comment}}"
+                </order_comments_customer>
+                <order_confirmation_admin>
+                Order no #{{var order_no}} was placed at {{var time}} for {{var order_total}} {{var currency}} 
+                </order_confirmation_admin>
+                <order_update_admin>
+                Order no #{{var order_no}} status was changed to {{var order_status}} at {{var time}} in {{var store_name}}
+                </order_update_admin>
+                <registration_sms>
+                Please Enter {{var code}} as your OTP/Verification code for Registration with {{var store_name}}
+                </registration_sms>
+                <login_sms>
+                Please Enter {{var code}} as your OTP/Verification code for Account Login with {{var store_name}}
+                </login_sms>
+            </sms_template_settings>
+            <sms_settings>
+            	<test_module>Test Module</test_module>
+            	<country_code>5</country_code>
+            </sms_settings>
+        </sms>
+    </default>
+</config>
